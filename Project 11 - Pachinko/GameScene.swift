@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func didMove(to view: SKView) {
@@ -21,14 +21,19 @@ class GameScene: SKScene {
         addChild(background)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsWorld.contactDelegate = self
         
-        let bouncer = SKSpriteNode(imageNamed: "bouncer")
-        bouncer.position = CGPoint(x: 512, y: 0)
-        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
-        // False means it will collide with other things but is fixed in position
-        bouncer.physicsBody?.isDynamic = false
-        addChild(bouncer)
-       
+        makeBouncer(at: CGPoint(x: 0, y: 0))
+        makeBouncer(at: CGPoint(x: 256, y: 0))
+        makeBouncer(at: CGPoint(x: 512, y: 0))
+        makeBouncer(at: CGPoint(x: 768, y: 0))
+        makeBouncer(at: CGPoint(x: 1024, y: 0))
+
+        makeSlot(at: CGPoint(x: 128, y: 0), isGood: true)
+        makeSlot(at: CGPoint(x: 384, y: 0), isGood: false)
+        makeSlot(at: CGPoint(x: 640, y: 0), isGood: true)
+        makeSlot(at: CGPoint(x: 896, y: 0), isGood: false)
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -39,7 +44,12 @@ class GameScene: SKScene {
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
         //Bouncyness
         ball.physicsBody?.restitution = 0.4
+        
+        //Bounce off of everthing and please tell me about every single bounce/collision
+        ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+        
         ball.position = location
+        ball.name = "ball"
         addChild(ball)
         
         
@@ -50,4 +60,44 @@ class GameScene: SKScene {
 //        addChild(box)
     }
 
+    
+    func makeBouncer(at position: CGPoint) {
+        let bouncer = SKSpriteNode(imageNamed: "bouncer")
+        bouncer.position = position
+        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
+        // False means it will collide with other things but is fixed in position
+        bouncer.physicsBody?.isDynamic = false
+        addChild(bouncer)
+    }
+    
+    
+    func makeSlot(at position: CGPoint, isGood: Bool) {
+        var slotBase: SKSpriteNode
+        var slotGlow: SKSpriteNode
+        
+        if isGood {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
+            slotBase.name = "good"
+        } else {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
+            slotBase.name = "bad"
+        }
+        
+        slotBase.position = position
+        slotGlow.position = position
+        
+        addChild(slotGlow)
+        
+        slotBase.physicsBody = SKPhysicsBody(rectangleOf: slotBase.size)
+        slotBase.physicsBody?.isDynamic = false
+        
+        addChild(slotBase)
+        
+        //Spin fpr 10 seconds, loop fovever
+        let spin = SKAction.rotate(byAngle: .pi, duration: 10)
+        let spinForever = SKAction.repeatForever(spin)
+        slotGlow.run(spinForever)
+    }
 }
