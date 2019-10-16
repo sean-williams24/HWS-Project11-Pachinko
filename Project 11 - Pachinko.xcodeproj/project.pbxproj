@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CE0C26612357322E000C8089 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C26602357322E000C8089 /* AppDelegate.swift */; };
 		CE0C26632357322E000C8089 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE0C26622357322E000C8089 /* GameScene.sks */; };
-		CE0C26652357322E000C8089 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE0C26642357322E000C8089 /* Actions.sks */; };
 		CE0C26672357322E000C8089 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C26662357322E000C8089 /* GameScene.swift */; };
 		CE0C26692357322E000C8089 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C26682357322E000C8089 /* GameViewController.swift */; };
 		CE0C266C2357322E000C8089 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0C266A2357322E000C8089 /* Main.storyboard */; };
@@ -21,7 +20,6 @@
 		CE0C265D2357322E000C8089 /* Project 11 - Pachinko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 11 - Pachinko.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0C26602357322E000C8089 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE0C26622357322E000C8089 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		CE0C26642357322E000C8089 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		CE0C26662357322E000C8089 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		CE0C26682357322E000C8089 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CE0C266B2357322E000C8089 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 			children = (
 				CE0C26602357322E000C8089 /* AppDelegate.swift */,
 				CE0C26622357322E000C8089 /* GameScene.sks */,
-				CE0C26642357322E000C8089 /* Actions.sks */,
 				CE0C26662357322E000C8089 /* GameScene.swift */,
 				CE0C26682357322E000C8089 /* GameViewController.swift */,
 				CE0C266A2357322E000C8089 /* Main.storyboard */,
@@ -135,7 +132,6 @@
 				CE0C26632357322E000C8089 /* GameScene.sks in Resources */,
 				CE0C266E23573230000C8089 /* Assets.xcassets in Resources */,
 				CE0C267123573230000C8089 /* LaunchScreen.storyboard in Resources */,
-				CE0C26652357322E000C8089 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.seanwilliams.Project-11---Pachinko";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -320,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.seanwilliams.Project-11---Pachinko";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
