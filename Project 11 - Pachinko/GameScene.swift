@@ -44,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         editLabel = SKLabelNode(fontNamed: "Chalkduster")
         editLabel.text = "Edit"
-        editLabel.position = CGPoint(x: 80, y: 70)
+        editLabel.position = CGPoint(x: 80, y: 700)
         addChild(editLabel)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
@@ -160,7 +160,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     //Remove node (ball) from node tree (game)
     func destroy(ball: SKNode) {
+        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+            fireParticles.position = ball.position
+            addChild(fireParticles)
+        }
+        
         ball.removeFromParent()
+        
     }
     
     

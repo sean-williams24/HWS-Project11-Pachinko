@@ -14,6 +14,7 @@
 		CE0C266C2357322E000C8089 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0C266A2357322E000C8089 /* Main.storyboard */; };
 		CE0C266E23573230000C8089 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0C266D23573230000C8089 /* Assets.xcassets */; };
 		CE0C267123573230000C8089 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0C266F23573230000C8089 /* LaunchScreen.storyboard */; };
+		CE1FE70323586263004C18B4 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE1FE70223586263004C18B4 /* FireParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CE0C266D23573230000C8089 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE0C267023573230000C8089 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE0C267223573230000C8089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1FE70223586263004C18B4 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				CE0C266D23573230000C8089 /* Assets.xcassets */,
 				CE0C266F23573230000C8089 /* LaunchScreen.storyboard */,
 				CE0C267223573230000C8089 /* Info.plist */,
+				CE1FE70223586263004C18B4 /* FireParticles.sks */,
 			);
 			path = "Project 11 - Pachinko";
 			sourceTree = "<group>";
@@ -130,6 +133,7 @@
 			files = (
 				CE0C266C2357322E000C8089 /* Main.storyboard in Resources */,
 				CE0C26632357322E000C8089 /* GameScene.sks in Resources */,
+				CE1FE70323586263004C18B4 /* FireParticles.sks in Resources */,
 				CE0C266E23573230000C8089 /* Assets.xcassets in Resources */,
 				CE0C267123573230000C8089 /* LaunchScreen.storyboard in Resources */,
 			);
