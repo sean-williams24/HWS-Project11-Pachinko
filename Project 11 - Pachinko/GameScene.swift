@@ -26,6 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    let ballColours = ["Cyan", "Red", "Blue", "Green", "Yellow", "Purple", "Grey"]
+    
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -86,7 +88,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                // Create a ball
+                let randomInt = Int.random(in: 0..<ballColours.count)
+                let ballColour = "ball\(ballColours[randomInt])"
+                let ball = SKSpriteNode(imageNamed: ballColour)
+                
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 //Bouncyness
                 ball.physicsBody?.restitution = 0.4
@@ -94,7 +100,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //Bounce off of everthing and please tell me about every single bounce/collision
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
                 
-                ball.position = location
+                ball.position.x = location.x
+                ball.position.y = 700
                 ball.name = "ball"
                 addChild(ball)
             }
