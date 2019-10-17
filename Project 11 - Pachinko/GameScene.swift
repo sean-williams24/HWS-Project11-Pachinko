@@ -27,7 +27,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     let ballColours = ["Cyan", "Red", "Blue", "Green", "Yellow", "Purple", "Grey"]
-    
+    var ballNumber = 0
+    var totalNumberOfAllowedBalls = 5
+
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -71,6 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
+        
         //Find out what object is being tapped
         let objects = nodes(at: location)
         if objects.contains(editLabel) {
@@ -82,28 +85,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1), size: size)
                 box.zRotation = CGFloat.random(in: 0...3)
                 box.position = location
+                box.name = "box"
 
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
 
                 addChild(box)
             } else {
-                // Create a ball
-                let randomInt = Int.random(in: 0..<ballColours.count)
-                let ballColour = "ball\(ballColours[randomInt])"
-                let ball = SKSpriteNode(imageNamed: ballColour)
-                
-                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                //Bouncyness
-                ball.physicsBody?.restitution = 0.4
-                
-                //Bounce off of everthing and please tell me about every single bounce/collision
-                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                
-                ball.position.x = location.x
-                ball.position.y = 700
-                ball.name = "ball"
-                addChild(ball)
+                ballNumber += 1
+                if ballNumber <= totalNumberOfAllowedBalls {
+                    createBall(location: location)
+                }
             }
         }
         
@@ -113,6 +105,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        addChild(box)
     }
 
+    func createBall(location: CGPoint) {
+        // Create a ball
+         
+         let randomInt = Int.random(in: 0..<ballColours.count)
+         let ballColour = "ball\(ballColours[randomInt])"
+         let ball = SKSpriteNode(imageNamed: ballColour)
+         
+         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+         //Bouncyness
+         ball.physicsBody?.restitution = 0.4
+         
+         //Bounce off of everthing and please tell me about every single bounce/collision
+         ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+         
+         ball.position.x = location.x
+         ball.position.y = 700
+         ball.name = "ball"
+         addChild(ball)
+    }
     
     func makeBouncer(at position: CGPoint) {
         let bouncer = SKSpriteNode(imageNamed: "bouncer")
@@ -157,22 +168,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Collision between ball and slot - destroy once it collides
     func collisionBetween(ball: SKNode, object: SKNode) {
         if object.name == "good" {
-            destroy(ball: ball)
+            destroy(ball)
             score += 1
+            ballNumber -= 1
+            totalNumberOfAllowedBalls += 1
         } else if object.name == "bad" {
-            destroy(ball: ball)
+            destroy(ball)
             score -= 1
+        } else if object.name == "box" {
+            destroy(object)
         }
     }
 
-    //Remove node (ball) from node tree (game)
-    func destroy(ball: SKNode) {
+    //Remove node (object) from node tree (game)
+    func destroy(_ object: SKNode) {
         if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
-            fireParticles.position = ball.position
+            fireParticles.position = object.position
             addChild(fireParticles)
         }
         
-        ball.removeFromParent()
+        object.removeFromParent()
         
     }
     
